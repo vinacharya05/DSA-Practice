@@ -15,6 +15,19 @@ Example 3:
 Input: nums = [3,3], target = 6
 Output: [0,1]*/
 
+// Approach 1 - Brute force
+var twoSum = function(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] === target) {
+                return [i, j]
+            }
+        }
+    }
+};
+
+
+// Approach 2 - Optimal
 function  twoSum(nums, target) {
     const map = {}
     for (let i=0; i<nums.length; i++) {
@@ -26,3 +39,23 @@ function  twoSum(nums, target) {
     }
     return [-1,-1];
 }
+
+// Approach 2(I) - Same as Approach 2
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    const map = {}
+    for (let i = 0; i < nums.length; i++) {
+        const rem = target - nums[i];
+        if (map[rem] !== undefined) {
+            return [i, map[rem]];
+        }
+
+        map[nums[i]] = i;
+    }
+};
+
+//Approach 3 - If we sort the array we can use two pointers (But we need to store the original index of values in some map)
